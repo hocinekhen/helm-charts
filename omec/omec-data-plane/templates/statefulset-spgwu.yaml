@@ -18,7 +18,7 @@ limitations under the License.
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: spgwu
+  name: spgwu2
   serviceName: spgwu-headless
   labels:
 {{ tuple "spgwu" . | include "omec-data-plane.metadata_labels" | indent 4 }}
@@ -34,12 +34,12 @@ spec:
       annotations:
         k8s.v1.cni.cncf.io/networks: '[
           {
-            "name": "s1u-net",
+            "name": "s1u-net2",
             "interface": {{ .Values.config.spgwu.s1u.device | quote }},
             "ips": {{ .Values.config.spgwu.s1u.ip | quote }}
           },
           {
-            "name": "sgi-net",
+            "name": "sgi-net2",
             "interface": {{ .Values.config.spgwu.sgi.device | quote }},
             "ips": {{ .Values.config.spgwu.sgi.ip | quote }}
           }
@@ -51,7 +51,7 @@ spec:
     {{- end }}
     {{- if not .Values.config.sriov.enabled }}
       initContainers:
-        - name: spgwu-iptables-init
+        - name: spgwu-iptables-init2
           image: {{ .Values.images.tags.init | quote }}
           imagePullPolicy: {{ .Values.images.pullPolicy | quote }}
           command: [ "sh", "-xec"]
@@ -71,7 +71,7 @@ spec:
           command:
             - /opt/dp/scripts/setup-af-iface.sh
           volumeMounts:
-            - name: dp-script
+            - name: dp-script2
               mountPath: /opt/dp/scripts/setup-af-iface.sh
               subPath: setup-af-iface.sh
     {{- end }}
@@ -79,7 +79,7 @@ spec:
 {{ tuple "spgwc" . | include "omec-data-plane.coredump_init" | indent 8 }}
     {{- end }}
       containers:
-      - name: spgwu
+      - name: spgwu2
         image: {{ .Values.images.tags.spgwu | quote }}
         imagePullPolicy: {{ .Values.images.pullPolicy | quote }}
         securityContext:
@@ -96,7 +96,7 @@ spec:
         - name: MEM_LIMIT
           valueFrom:
             resourceFieldRef:
-              containerName: spgwu
+              containerName: spgwu2
               resource: limits.memory
               divisor: 1Mi
         - name: POD_IP
@@ -110,13 +110,13 @@ spec:
         - ip a;
           /opt/dp/scripts/run.sh;
         volumeMounts:
-        - name: dp-script
+        - name: dp-script2
           mountPath: /opt/dp/scripts/run.sh
           subPath: run.sh
-        - name: dp-config
+        - name: dp-config2
           mountPath: /etc/dp/config
       {{- if .Values.config.coreDump.enabled }}
-        - name: coredump
+        - name: coredump2
           mountPath: /tmp/coredump
       {{- end }}
         resources:
@@ -137,19 +137,19 @@ spec:
             intel.com/sriov_vfio_sgi_net: 1
           {{- end }}
       volumes:
-      - name: dp-script
+      - name: dp-script2
         configMap:
-          name: spgwu
+          name: spgwu2
           defaultMode: 493
-      - name: dp-config
+      - name: dp-config2
         configMap:
-          name: spgwu
+          name: spgwu2
           defaultMode: 420
     {{- if .Values.config.coreDump.enabled }}
-      - name: host-rootfs
+      - name: host-rootfs2
         hostPath:
           path: /
-      - name: coredump
+      - name: coredump2
         hostPath:
           path: {{ .Values.config.coreDump.path }}
     {{- end }}
