@@ -45,8 +45,8 @@ metadata:
 {{ tuple "spgwc" . | include "omec-control-plane.metadata_labels" | indent 4 }}
 spec:
   clusterIP: None
-  selector:
-{{ tuple "spgwc" . | include "omec-control-plane.metadata_labels" | indent 4 }}
+  type: ExternalName
+  externalName: spgwc-headless.omec.svc.cluster.local
   ports:
   - name: cp-comm
     port: {{ .Values.config.spgwc.cpComm.port }}
