@@ -19,7 +19,7 @@ limitations under the License.
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: spgwu
+  name: spgwu2
   labels:
 {{ tuple "spgwu" . | include "omec-data-plane.metadata_labels" | indent 4 }}
 data:
@@ -59,7 +59,7 @@ data:
     [0]
     zmq_protocol = tcp
     dp_comm_ip = DP_ADDR
-    dp_comm_port = 20
+    dp_comm_port = 22
 {{- if .Values.config.spgwu.multiUpfs }}
     cp_nb_ip = {{ .Values.config.spgwu.cpComm.addr }}
     cp_nb_port = {{ .Values.config.spgwu.cpComm.port }}
