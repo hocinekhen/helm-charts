@@ -19,7 +19,7 @@ limitations under the License.
 apiVersion: v1
 kind: Service
 metadata:
-  name: spgwu
+  name: spgwu2
   labels:
 {{ tuple "spgwu" . | include "omec-data-plane.metadata_labels" | indent 4 }}
 spec:
@@ -37,7 +37,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: spgwu-headless
+  name: spgwu-headless2
   labels:
 {{ tuple "spgwu" . | include "omec-data-plane.metadata_labels" | indent 4 }}
 spec:
@@ -57,7 +57,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: spgwu-external
+  name: spgwu-external2
   labels:
 {{ tuple "spgwu" . | include "omec-data-plane.metadata_labels" | indent 4 }}
 spec:
