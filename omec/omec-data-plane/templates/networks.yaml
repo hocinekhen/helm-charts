@@ -19,7 +19,7 @@ limitations under the License.
 apiVersion: "k8s.cni.cncf.io/v1"
 kind: NetworkAttachmentDefinition
 metadata:
-  name: s1u-net
+  name: s1u-net2
 {{- if $.Values.config.sriov.enabled }}
   annotations:
     k8s.v1.cni.cncf.io/resourceName: intel.com/sriov_vfio_s1u_net
@@ -35,7 +35,7 @@ spec:
 apiVersion: "k8s.cni.cncf.io/v1"
 kind: NetworkAttachmentDefinition
 metadata:
-  name: sgi-net
+  name: sgi-net2
 {{- if $.Values.config.sriov.enabled }}
   annotations:
     k8s.v1.cni.cncf.io/resourceName: intel.com/sriov_vfio_sgi_net
