@@ -61,7 +61,7 @@ spec:
                 - NET_ADMIN
           args:
             - iptables -I OUTPUT -p icmp --icmp-type destination-unreachable -j DROP;
-        - name: spgwu-af-iface-init
+        - name: spgwu-af-iface-init2
           image: {{ .Values.images.tags.init | quote }}
           imagePullPolicy: {{ .Values.images.pullPolicy | quote }}
           securityContext:
