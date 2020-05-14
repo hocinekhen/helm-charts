@@ -19,7 +19,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: spgwu2
-  serviceName: spgwu-headless
+  serviceName: spgwu-headless2
   labels:
 {{ tuple "spgwu" . | include "omec-data-plane.metadata_labels" | indent 4 }}
 spec:
