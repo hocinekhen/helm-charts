@@ -42,15 +42,15 @@ config:
     enabled: false
     path: /tmp/coredump
   sriov:
-    enabled: true
+    enabled: false
   spgwu:
     # Provide the S1U and SGI networks facing device name and IP address
     s1u:
-      device: s1u-net
-      ip: 192.168.251.3/24
+      device: s1u-net2
+      ip: 192.168.251.10/24
     sgi:
-      device: sgi-net
-      ip: 192.168.250.3/24
+      device: sgi-net2
+      ip: 192.168.250.10/24
     # Note that zmq is used for cp-dp commmunication when multiple UPFs is set
     # Otherwise, direct UDP communication is used
     # TODO: unify cp-dp comm to ZMQ for both multi and single UPF scenario
@@ -65,11 +65,11 @@ config:
     dpComm:
       nodePort:
         enabled: false
-        port: 30020
-      port: 20
+        port: 30022
+      port: 22
     # Set "--no-pci --vdev eth_af_packet0,iface=s1u-net --vdev eth_af_packet1,iface=sgi-net"
     # when sriov is disabled
-    devices: ""
+    devices: "--no-pci --vdev eth_af_packet0,iface=s1u-net --vdev eth_af_packet1,iface=sgi-net"
     dpName: "onf-menlo"
 
 networks:
