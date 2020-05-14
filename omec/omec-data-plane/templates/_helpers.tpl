@@ -49,8 +49,8 @@ Render init container for coredump.
     runAsUser: 0
   command: ["bash", "-xc"]
   args:
-    - echo '/tmp/coredump/core.%h.%e.%t' > /mnt/host-rootfs2/proc/sys/kernel/core_pattern
+    - echo '/tmp/coredump/core.%h.%e.%t' > /mnt/host-rootfs/proc/sys/kernel/core_pattern
   volumeMounts:
-    - name: host-rootfs
+    - name: host-rootfs2
       mountPath: /mnt/host-rootfs
 {{- end -}}
