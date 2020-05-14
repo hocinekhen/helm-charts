@@ -69,7 +69,7 @@ config:
       port: 22
     # Set "--no-pci --vdev eth_af_packet0,iface=s1u-net --vdev eth_af_packet1,iface=sgi-net"
     # when sriov is disabled
-    devices: "--no-pci --vdev eth_af_packet0,iface=s1u-net --vdev eth_af_packet1,iface=sgi-net"
+    devices: "--no-pci --vdev eth_af_packet0,iface=s1u-net2 --vdev eth_af_packet1,iface=sgi-net2"
     dpName: "onf-menlo"
 
 networks:
